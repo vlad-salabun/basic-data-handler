@@ -1,0 +1,12 @@
+{
+    "name": "salabun/bdh",
+    "type": "library",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Salabun\\Bdh\\": "src/"
+        }
+    },
+    "minimum-stability": "dev",
+    "require": {}
+}
