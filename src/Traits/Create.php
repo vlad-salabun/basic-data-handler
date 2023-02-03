@@ -7,7 +7,7 @@ trait Create
     public function create()
     {
         $this->beforeCreation();
-        // TODO: try-catch
+
         $className = $this->request->input('model');
         $object = new $className();
 
@@ -29,14 +29,8 @@ trait Create
             return false;
         }
 
-
-
-
         $this->afterCreation();
-        $this->beforeReturn();
     }
 
-    public function beforeCreation() {}
-    public function afterCreation() {}
-    public function beforeReturn() {}
+
 }

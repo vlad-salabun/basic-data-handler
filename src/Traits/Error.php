@@ -12,6 +12,9 @@ trait Error
         3 => "Request type not specified.",
         4 => "Data not specified.",
         5 => "Error while creation.",
+        6 => "Error while update.",
+        7 => "Update failed, becouse record not found.",
+        8 => "Error while reading.",
     ];
 
     public function getErrorMessage($code)

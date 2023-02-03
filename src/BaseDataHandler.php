@@ -65,6 +65,14 @@ class BaseDataHandler
             $this->create();
         }
 
+        if($this->request->input('request_type') == "update") {
+            $this->update();
+        }
+
+        if($this->request->input('request_type') == "read") {
+            $this->read();
+        }
+
         $this->afterReturn();
 
     }
@@ -74,6 +82,19 @@ class BaseDataHandler
         $this->beforeResponse();
         return $this->response;
     }
+
+
+
+    public function beforeCreation() {}
+    public function afterCreation() {}
+
+    public function beforeRead() {}
+    public function afterRead() {}
+
+
+    public function beforeUpdate() {}
+    public function afterUpdate() {}
+
 
     public function afterReturn() {}
     public function beforeResponse() {}
