@@ -20,6 +20,12 @@ trait Read
 
             }
 
+            if($this->request->has("with")) {
+                foreach($this->request["with"] as $relation) {
+                    $object->with($relation);
+                }
+            }
+
             $pagination = false;
             if($this->request->has("pagination")) {
                 $pagination = $this->request["pagination"];

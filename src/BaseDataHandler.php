@@ -12,20 +12,26 @@ class BaseDataHandler
 {
     use Create, Read, Update, Delete, Error;
 
+    public $startTime = 0;
+    public $endTime = 0;
     public $request = null;
     public $response = [
         "status" => 0,
-        "request" => [],
         "response" => [],
         "execution_time" => 0,
     ];
 
     public function __construct($request)
     {
-        $this->request = $request;
-        $this->response['request'] = $this->request->toArray();
+        $this->startTime = microtime(true);
 
-        return $this->request;
+        $this->request = $request;
+
+        if(!$this->request->has('debug')) {
+            if($this->request->input('debug')) {
+                $this->response['request'] = $this->request->toArray();
+            }
+        }
     }
 
     public function handleRequest()
@@ -80,6 +86,11 @@ class BaseDataHandler
     public function getResponse()
     {
         $this->beforeResponse();
+
+        $this->endTime = microtime(true);
+        $this->response["execution_time"] =
+            number_format(($this->endTime - $this->startTime) / 60, 2);
+
         return $this->response;
     }
 
