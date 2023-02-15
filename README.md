@@ -47,6 +47,21 @@ use App\Http\Controllers\TestController;
 Route::post('/food-track', [TestController::class, 'foodtrackApi']);
 ```
 
+Create models specifying which connection to use
+```php
+class Order extends Model
+{
+
+    protected $connection = 'foodtrack';
+    public $timestamps = false;
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+}
+```
+
 ## Usage
 Get library for HTTP requests:
 ```html
