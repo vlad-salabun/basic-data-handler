@@ -84,7 +84,7 @@ To get access to relations add parameter **with** which you can specify array of
 ```js
 axios.post('/api/food-track', {
     model: 'App\\Models\\FoodTrack\\Order',
-    with: ['orderItems'],
+    with: ['orderItems'], // not required, relation names are the same as in laravel model
     request_type: 'read',
     data: {}, // empty
     where: [
@@ -96,8 +96,7 @@ axios.post('/api/food-track', {
         ["name", "asc"]
     ],
     pagination: 3, // not required, add this to use pagination
-    path: "http://your-site.com/food-track"
-     // not required, add this to customize pagination link
+    path: "http://your-site.com/food-track" // not required, add this to customize pagination link
 })
 .then(function (response) {
     console.log(response.data);
