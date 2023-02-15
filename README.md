@@ -2,6 +2,8 @@
 
 This application contain basic CRUD operations with your Eloquent models. It is intended for testing purposes. Do not use this in a production mode.
 
+toc::[]
+
 ## Instalation and configuration
 ```php
 composer require salabun/bdh
@@ -78,5 +80,52 @@ axios.post('/api/food-track', {
 });
 ```
 ### Read request
+To get access to relations add parameter **with** which you can specify array of related models:
+```js
+axios.post('/api/food-track', {
+    model: 'App\\Models\\FoodTrack\\Order',
+    with: ['orderItems'],
+    request_type: 'read',
+    data: {}, // empty
+    where: [
+        ["id", "<=", 3],
+        ["deleted_at", "=", null]
+    ],
+    order_by: [
+        ["id", "desc"],
+        ["name", "asc"]
+    ],
+    pagination: 3, // not required, add this to use pagination
+    path: "http://your-site.com/food-track"
+     // not required, add this to customize pagination link
+})
+.then(function (response) {
+    console.log(response.data);
+})
+.catch(function (error) {
+    console.log(error);
+});
+```
+
 ### Update request
+```js
+axios.post('/api/food-track', {
+    model: 'App\\Models\\FoodTrack\\Product',
+    request_type: 'update',
+    data: {
+        description: "Pizza",
+        available_quantity: 999,
+    },
+    where: [
+        ["id", "=", 1],
+        ["deleted_at", "=", null]
+    ]
+})
+.then(function (response) {
+    console.log(response.data);
+})
+.catch(function (error) {
+    console.log(error);
+});
+```
 ### Delete request
