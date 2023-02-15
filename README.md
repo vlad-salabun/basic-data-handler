@@ -6,14 +6,14 @@ This application contain basic CRUD operations with your Eloquent models. It is 
 ```php
 composer require salabun/bdh
 ```
-Add new aliase in config/app.php:
+Add new aliase in **config/app.php**:
 ```php
 'aliases' => [
     'BDH' => Salabun\Bdh\BaseDataHandler::class,
 ],
 ```
 
-Create new folder **app\Http\Controllers\MS_BDH** and controller for BDH ex. **MS_BDH.php** and extend library::
+Create new folder **app\Http\Controllers\MS_BDH** and controller for BDH ex. **MS_BDH.php** and extend library:
 ```php
 namespace App\Http\Controllers\MS_BDH;
 use BDH; // <- thisn is main library class
@@ -45,6 +45,37 @@ use App\Http\Controllers\TestController;
 Route::post('/food-track', [TestController::class, 'foodtrackApi']);
 ```
 
-
-
 ## Usage
+Get library for HTTP requests:
+```html
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+```
+Specify in your request which model you want to interact with and request type:
+```js
+model: 'App\\Models\\Post',
+request_type: 'create' // [create, read, update, delete]
+```
+
+
+### Create request
+```js
+axios.post('/api/food-track', {
+    model: 'App\\Models\\FoodTrack\\OrderItem',
+    request_type: 'create',
+    data: {
+        order_id: 1,
+        product_id: 3,
+        quantity: 3,
+        price: 35.00,
+    },
+})
+.then(function (response) {
+    console.log(response.data);
+})
+.catch(function (error) {
+    console.log(error);
+});
+```
+### Read request
+### Update request
+### Delete request
