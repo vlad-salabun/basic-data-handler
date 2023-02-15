@@ -50,10 +50,11 @@ Get library for HTTP requests:
 ```html
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 ```
-Specify in your request which model you want to interact with and request type:
+Specify in your request:
 ```js
-model: 'App\\Models\\Post',
+model: 'App\\Models\\Post', // model you want to interact with
 request_type: 'create' // [create, read, update, delete]
+data: {} // object
 ```
 
 
