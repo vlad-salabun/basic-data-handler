@@ -190,3 +190,39 @@ public $response = [
 ];
 ```
 ## Responses
+The basic response contains the following fields:
+```js
+{
+    "status": 200,
+    "status_message": "Object created!"
+    "response": {
+        "data": []
+    },
+    "execution_time": 0.00
+}
+```
+
+Add a field **debug** to add request fields into response.
+```js
+{
+    "status": 200,
+    "status_message": "Object created!"
+    "response": {
+        "data": []
+    },
+    "request": []
+    "execution_time": 0.00
+}
+```
+If request fails field **status** will have code 400 or 500. Two new fields will also be added. **errors** contains a textual explanation of the essence of the error.
+```js
+{
+    "status": 500,
+    "error_code": 1,
+    "errors": 1,
+    "response": {
+        "data": []
+    },
+    "execution_time": 0.00
+}
+```
