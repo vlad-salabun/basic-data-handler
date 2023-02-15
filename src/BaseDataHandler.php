@@ -21,6 +21,8 @@ class BaseDataHandler
         "execution_time" => 0,
     ];
 
+    public $executionIsAllowed = true;
+
     public function __construct($request)
     {
         $this->startTime = microtime(true);
@@ -79,6 +81,10 @@ class BaseDataHandler
             $this->read();
         }
 
+        if($this->request->input('request_type') == "delete") {
+            $this->delete();
+        }
+
         $this->afterReturn();
 
     }
@@ -94,6 +100,10 @@ class BaseDataHandler
         return $this->response;
     }
 
+    public function stopExecution()
+    {
+        $this->executionIsAllowed = false;
+    }
 
 
     public function beforeCreation() {}
@@ -106,6 +116,8 @@ class BaseDataHandler
     public function beforeUpdate() {}
     public function afterUpdate() {}
 
+    public function beforeDelete() {}
+    public function afterDelete() {}
 
     public function afterReturn() {}
     public function beforeResponse() {}

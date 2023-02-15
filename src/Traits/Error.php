@@ -15,6 +15,7 @@ trait Error
         6 => "Error while update.",
         7 => "Update failed, becouse record not found.",
         8 => "Error while reading.",
+        9 => "Error while deleting.",
     ];
 
     public function getErrorMessage($code)

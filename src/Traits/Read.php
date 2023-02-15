@@ -8,6 +8,10 @@ trait Read
     {
         $this->beforeRead();
 
+        if(!$this->executionIsAllowed) {
+            return false;
+        }
+
         $className = $this->request->input('model');
 
         try {
@@ -31,8 +35,15 @@ trait Read
                 $pagination = $this->request["pagination"];
             }
 
+
+
             if($pagination) {
-                $records = $object->paginate($pagination);
+                if($this->request->has("path")) {
+                    $records = $object->paginate($pagination)->withPath($this->request["path"]);
+                } else {
+                    $records = $object->paginate($pagination);
+                }
+
             } else {
                 $records = $object->get();
             }

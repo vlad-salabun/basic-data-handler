@@ -8,6 +8,10 @@ trait Create
     {
         $this->beforeCreation();
 
+        if(!$this->executionIsAllowed) {
+            return false;
+        }
+
         $className = $this->request->input('model');
         $object = new $className();
 

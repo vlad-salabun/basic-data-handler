@@ -8,6 +8,10 @@ trait Update
     {
         $this->beforeUpdate();
 
+        if(!$this->executionIsAllowed) {
+            return false;
+        }
+
         $className = $this->request->input('model');
 
         try {
