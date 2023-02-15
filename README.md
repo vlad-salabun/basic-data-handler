@@ -143,3 +143,21 @@ axios.post('/api/food-track', {
 });
 ```
 ### Delete request
+```js
+axios.post('/api/food-track', {
+    model: 'App\\Models\\FoodTrack\\OrderItem',
+    with: ['orderItems'],
+    request_type: 'delete',
+    data: {},
+    where: [
+        ["id", "=", 1],
+        //["deleted_at", "=", null]
+    ]
+})
+.then(function (response) {
+    console.log(response.data);
+})
+.catch(function (error) {
+    console.log(error);
+});
+```
