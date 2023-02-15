@@ -29,7 +29,7 @@ trait Create
             $this->response["error_code"] = 5;
             $this->response["status"] = 500;
 
-             $this->response["errors"] = $e->getMessage();
+            $this->response["errors"] = $e->getMessage();
             return false;
         }
 
