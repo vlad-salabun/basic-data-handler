@@ -112,7 +112,6 @@ class BaseDataHandler
     public function beforeRead() {}
     public function afterRead() {}
 
-
     public function beforeUpdate() {}
     public function afterUpdate() {}
 

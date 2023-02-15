@@ -76,6 +76,7 @@ data: {} // object
 
 
 ### Create request
+Data object keys must match the field names in the database.
 ```js
 axios.post('/api/food-track', {
     model: 'App\\Models\\FoodTrack\\OrderItem',
@@ -146,7 +147,6 @@ axios.post('/api/food-track', {
 ```js
 axios.post('/api/food-track', {
     model: 'App\\Models\\FoodTrack\\OrderItem',
-    with: ['orderItems'],
     request_type: 'delete',
     data: {},
     where: [
@@ -161,3 +161,32 @@ axios.post('/api/food-track', {
     console.log(error);
 });
 ```
+
+## Backend methods
+In your controller **App\Http\Controllers\MS_BDH** you can reload methods:
+```php
+public function beforeCreation() {}
+public function afterCreation() {}
+
+public function beforeRead() {}
+public function afterRead() {}
+
+public function beforeUpdate() {}
+public function afterUpdate() {}
+
+public function beforeDelete() {}
+public function afterDelete() {}
+
+public function afterReturn() {}
+public function beforeResponse() {}
+```
+You have access to this variables:
+```php
+public $request = null;
+public $response = [
+    "status" => 0,
+    "response" => [],
+    "execution_time" => 0,
+];
+```
+## Responses
